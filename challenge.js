@@ -42,4 +42,24 @@ function sumZero(arr){
     return []
 
 }
-console.log(sumZero([-2,-3,-10,1,2,3,1,4]))
+// console.log(sumZero([-2,-3,-10,1,2,3,1,4]))
+
+function countUniqueValues(arr){
+    if(arr.length == 0){
+        return 0
+    }
+    let uniques = 1
+    let left = 0
+    let right = 1 
+    let final = arr.length - 1
+    while(left < final){
+        if(arr[left] != arr[right]){
+            uniques++
+        }
+        left++
+        right++
+    }
+    return uniques
+
+}
+console.log(countUniqueValues([]))
