@@ -108,4 +108,27 @@ function isSubsequence(str1, str2) {
     }
     return false;
 }
-console.log(isSubsequence('abc', 'abraadcbra'))
+// console.log(isSubsequence('abc', 'abraadcbra'))
+
+//average pair of two numbers
+function averagePair(arr, num){
+    if(arr.length == 0){
+        return false
+    }
+    let left = 0
+    let right = arr.length - 1 
+    
+    while(left < right){
+        let formula = (arr[left] + arr[right]) / 2
+        console.log(formula, num)
+        if(formula < num){
+            left ++
+        }else if(formula === num){
+            return true
+        }else{
+            right--
+        }
+    }
+    return false
+}
+console.log(averagePair([1,2,3],2.5))
