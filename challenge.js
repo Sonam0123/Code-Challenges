@@ -131,4 +131,30 @@ function averagePair(arr, num){
     }
     return false
 }
-console.log(averagePair([1,2,3],2.5))
+// console.log(averagePair([1,2,3],2.5))
+
+
+var commonChars = function(words) {
+    let war = words.join``.split``
+    let freq = {}
+    for(let i = 0; i < war.length; i++){
+        freq[war[i]] = freq[war[i]] + 1 || 1
+    }
+    console.log(freq)
+};
+let words = ["bella","label","roller"]
+// console.log(commonChars(words))
+
+var removeDuplicates = function(nums) {
+    let j = 0
+    for(let i = 0; i < nums.length; i++){
+        if(nums[i] != nums[i+1]){
+            nums[j] = nums[i]
+            j++
+        }
+    }
+    console.log(j)
+    return j
+};
+
+console.log(removeDuplicates([1,1,2,2,3,3,4,4,5,5,6,6,7,7,8,8,9,9,10,10]))
