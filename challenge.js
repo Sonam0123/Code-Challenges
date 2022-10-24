@@ -211,3 +211,18 @@ function sameFrequency(num1, num2){
 }
 
 // console.log(sameFrequency(182, 281))
+function areThereDuplicates(...arg) {
+    let sorted = arg.sort()
+    let left = 0
+    let next = 1 
+    while(next < sorted.length){
+        if(arg[left] === arg[next]){
+            return true
+        }
+        left++
+        next++
+    }
+    return false
+    
+}
+console.log(areThereDuplicates('a', 'b', 'c', 'a'))
