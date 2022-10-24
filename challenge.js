@@ -67,21 +67,22 @@ function countUniqueValues(arr){
 //Max sub array using sliding windows
 function maxSubArray(arr, num){
     if(num > arr.length){
-        return null
+        return false
     }
-    let max = 0;
-    let temp = 0;
-    for(let i = 0; i < num; i++){
-        max += arr[i]
+    let maxSum = 0
+    let tempSum = 0
+    for (var i = 0; i < num; i++) {
+        maxSum += arr[i]
     }
-    temp = max;
+    tempSum = maxSum
     for(let i = num; i < arr.length; i++){
-        temp = temp - arr[i - num] + arr[i]
-        max = Math.max(max, temp )
+        tempSum = tempSum - arr[i - num] + arr[i]
+        maxSum = Math.max(maxSum, tempSum)
     }
-    return max
+    return maxSum
 }
 // console.log(maxSubArray([2,6,9,2,1,8,5,6,3], 2))
+
 function areThereDuplicates() {
     let freq = {}
     for(let key in arguments){
@@ -140,7 +141,7 @@ var commonChars = function(words) {
     for(let i = 0; i < war.length; i++){
         freq[war[i]] = freq[war[i]] + 1 || 1
     }
-    console.log(freq)
+
 };
 let words = ["bella","label","roller"]
 // console.log(commonChars(words))
@@ -153,8 +154,60 @@ var removeDuplicates = function(nums) {
             j++
         }
     }
-    console.log(j)
     return j
 };
 
-console.log(removeDuplicates([1,1,2,2,3,3,4,4,5,5,6,6,7,7,8,8,9,9,10,10]))
+// console.log(removeDuplicates([1,1,2,2,3,3,4,4,5,5,6,6,7,7,8,8,9,9,10,10]))
+var firstUniqChar = function(s) {
+
+    let map = {}
+    let count= 0
+    for(let i = 0; i < s.length; i++){
+        if(map[s[i]]){
+           console.log(map[s[i]][1]++) 
+        }
+        else{
+            map[s[i]] =  [i, count]    
+        }
+    }
+    console.log(map)
+};
+// console.log(firstUniqChar('leetcode'))
+var commonChars = function(words) {
+    let map = {}    
+    let arr = []
+    for(let i = 0; i < words[0].length; i++){
+        map[words[0][i]] = map[words[0][i]] + 1 || 1
+    }
+    for(let i = 1; i < words.length; i++){
+        for(let j = 0; j < words[i].length; j++){
+            console.log(words[i][j])
+    }
+    return arr
+}
+}
+// console.log(commonChars(["bella","label","roller"]))
+
+function sameFrequency(num1, num2){
+    let str1 = num1.toString()
+    let str2 = num2.toString()
+    if(str2.length != str1.length){
+        return false
+    }
+    let freq1 = {}
+    let freq2  ={}
+    for(let i = 0; i < str1.length; i++){
+        freq1[str1[i]] = freq1[str1[i]] + 1 || 1 
+    }
+    for(let i = 0; i < str2.length; i++){
+        freq2[str2[i]] = freq2[str2[i]] + 1 || 1
+    }
+    for(let key in freq1){
+        if(freq1[key] != freq2[key]){
+            return false
+        }
+    }
+    return true
+}
+
+// console.log(sameFrequency(182, 281))
