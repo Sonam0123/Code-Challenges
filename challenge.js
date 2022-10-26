@@ -65,23 +65,24 @@ function countUniqueValues(arr){
 // console.log(countUniqueValues([]))
 
 //Max sub array using sliding windows
-function maxSubArray(arr, num){
-    if(num > arr.length){
+function maxSubarray(arr, num){
+    if(arr.length < num){
         return false
     }
-    let maxSum = 0
-    let tempSum = 0
-    for (var i = 0; i < num; i++) {
-        maxSum += arr[i]
+    let max = 0;
+    for(let i = 0; i< arr.length - num + 1; i++){
+        temp = 0
+        for(let j = 0; j < num; j++){
+            temp += arr[i + j]
+        }
+        console.log(temp)
+        if(temp > max){
+            max = temp
+        }
     }
-    tempSum = maxSum
-    for(let i = num; i < arr.length; i++){
-        tempSum = tempSum - arr[i - num] + arr[i]
-        maxSum = Math.max(maxSum, tempSum)
-    }
-    return maxSum
+    return max
 }
-// console.log(maxSubArray([2,6,9,2,1,8,5,6,3], 2))
+// console.log(maxSubarray([2,6,9,2,1,8,5,6,3], 2))
 
 function areThereDuplicates() {
     let freq = {}
@@ -225,4 +226,41 @@ function areThereDuplicates(...arg) {
     return false
     
 }
-console.log(areThereDuplicates('a', 'b', 'c', 'a'))
+// console.log(areThereDuplicates('a', 'b', 'c', 'a'))
+function isSubsequence(str1, str2) {
+
+    let i = 0
+    let j = 0
+    while(j < str2.length){
+        if(str1[i] === str2[j]){
+            i++
+        }
+        if(i === str1.length){
+            return true
+        }
+        j++
+    }
+    return false
+}
+//   console.log(isSubsequence('hello', 'hello world'))
+
+
+
+function plusMinus(arr) {
+    let positives = []
+    let negatives = []
+    let zeroes = []
+    let length = arr.length
+    for(let i = 0; i < arr.length; i++){
+        if(arr[i] == 0){
+            zeroes.push(arr[i])
+        }else if(arr[i] >= 1){
+            positives.push(arr[i])
+        }else{
+            negatives.push(arr[i])
+        }
+    }
+    return [positives.length / length, negatives.length / length, zeroes.length / length]
+}
+// console.log(plusMinus([-4, 3, -9, 0, 4, 1]))
+
