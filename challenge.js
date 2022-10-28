@@ -154,11 +154,13 @@ var removeDuplicates = function(nums) {
             nums[j] = nums[i]
             j++
         }
+        console.log(nums[j])
     }
     return j
 };
 
 // console.log(removeDuplicates([1,1,2,2,3,3,4,4,5,5,6,6,7,7,8,8,9,9,10,10]))
+
 var firstUniqChar = function(s) {
 
     let map = {}
@@ -264,3 +266,20 @@ function plusMinus(arr) {
 }
 // console.log(plusMinus([-4, 3, -9, 0, 4, 1]))
 
+function generateDocument(charaters, documents){
+    let charMap = {}
+    let docMap = {}
+    for(let i = 0; i < charaters.length; i++){
+        charMap[charaters[i]] = charMap[charaters[i]] + 1 || 1
+    }
+    for(let i = 0; i < documents.length; i++){
+        docMap[documents[i]] = docMap[documents[i]] + 1 || 1
+    }
+    for(let key in docMap){
+        if(docMap[key] > charMap[key]){
+            return false
+        }
+    }
+    return true
+}
+// console.log(generateDocument('Bste!hetsi ogEAxpelrt x ', 'AlgoExpert is the Best!'))
