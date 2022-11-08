@@ -53,3 +53,65 @@ function isPalindrome(str){
 }
 // console.log(isPalindrome('race a car'))
 
+var lengthOfLongestSubstring = function(str) {
+    let longest = 0;
+    let seen = {};
+    let start = 0;
+   
+    for (let i = 0; i < str.length; i++) {
+      let char = str[i];
+      console.log(char)
+      if (seen[char]) {
+        start = Math.max(start, seen[char]);
+      }
+      longest = Math.max(longest, i - start + 1);
+      seen[char] = i + 1;
+    }
+    return longest;
+  };
+//   console.log(lengthOfLongestSubstring('abcabcbb'))
+
+//a string is said to be beautiful if b occurs in it no more times than a; c occurs in it no more times than b; etc. for example 'bbbaacdafe' is beautiful since there aren't any letters that appear more frequently than the previous letter in the alphabet. Given a string, check whether it is beautiful.
+function beautifulString(str){
+    let obj = {}
+    for(let i = 0; i < str.length; i++){
+        if(obj[str[i]]){
+            obj[str[i]]++
+        }else{
+            obj[str[i]] = 1
+        }
+    }
+    let arr = Object.values(obj)
+    for(let i = 0; i < arr.length; i++){
+        if(arr[i] > arr[i + 1]){
+            return false
+        }
+    }
+    return true
+}
+// console.log(beautifulString('bbbaacdafe'))
+
+// Consider a string consisting of the characters < and > only. The string is balanced if each < always appears before (i.e., to the left of) a corresponding > character (they do not need to be adjacent). Morever each < and > act as a unique pair of symbols and neither symbol can be considered as part of any pair of symbols. To balance a string, any > character can be replaced with <>. Given an expression and a maximum number of replacements, determine whether the string can be balanced.
+// Example expressions= ['<<>>', '<>','<><>', '>>' , '<<>', '><><'] maxReplacements = [0, 1, 2, 2, 2, 2]
+// Process a series of expressions and their corresponding maxReplacements. Each of the first three expressions is balanced already. The string expressions[3] = '>>' can be balanced in two moves by replacing each > with <> to make <><>. Neither of the last two strings can ever be balanced. Return an array of integers where element[i] contains a 1 if the expression can be balanced or a 0 if it cannot. Sample ['<>>>', '<>>>>'], [2] Output [1, 0]
+
+function balancedString(expressions, maxReplacements){
+    let arr = []
+    for(let i = 0; i < expressions.length; i++){
+        let count = 0
+        for(let j = 0; j < expressions[i].length; j++){
+            if(expressions[i][j] === '>'){
+                count++
+            }else{
+                count --
+            }
+        }
+        if(count > maxReplacements[i]){
+            arr.push(0)
+        }else{
+            arr.push(1)
+        }
+    }
+    return arr
+}
+console.log(balancedString(['<>>>', '<>>>>'], [2]))
