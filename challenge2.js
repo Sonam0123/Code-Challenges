@@ -114,4 +114,32 @@ function balancedString(expressions, maxReplacements){
     }
     return arr
 }
-console.log(balancedString(['<>>>', '<>>>>'], [2]))
+// console.log(balancedString(['<>>>', '<>>>>'], [2]))
+
+//for each input N, print 1 if N is a self-describing number, or 0 if it is not. Sample Input 2020 Output 1
+// console.log(selfdescribingnumber(2020))
+
+function selfdescribingnumber(num){
+    let arr = num.toString().split('')
+    //We turn the argument number into a string and split it into single digit of strings because we can't iterate over a number
+    let obj = {}
+    for(let i = 0; i < arr.length; i++){
+        if(obj[arr[i]]){
+            obj[arr[i]]++
+        }else{
+            obj[arr[i]] = 1
+        }
+    }
+    // We create an object to store the number of times a digit appears in the argument number
+
+    for(let key in obj){
+        if(obj[key] != arr[key]){
+            return 0
+        }
+    }
+    // We iterate over the object and check if the number of times a digit appears in the argument number is equal to the digit itself
+    return 1
+}
+// console.log(selfdescribingnumber(621000100))
+
+
